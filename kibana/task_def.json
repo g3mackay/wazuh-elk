@@ -1,0 +1,20 @@
+[
+  {
+    "name": "kibana",
+    "image": "462818068088.dkr.ecr.us-east-1.amazonaws.com/custom_kibana",
+    "cpu": 10,
+    "memory": 1024,
+    "environment": [
+    {"name": "NODE_OPTIONS", "value": "--max-old-space-size=3072"},
+    {"name": "ELASTICSEARCH_URL", "value": "http://${elasticsearch_node}:9200"}
+    ],
+    "portMappings": [
+        {
+            "containerPort": 5601,
+            "hostPort": 5601
+        }
+    ],
+    "entryPoint": ["/fixconfig.sh","/wait-for-it.sh", "${elasticsearch_node}"],
+    "essential": true
+  }
+]

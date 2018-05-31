@@ -1,0 +1,23 @@
+[
+  {
+      "name": "logstash",
+      "image": "462818068088.dkr.ecr.us-east-1.amazonaws.com/custom_logstash",
+      "cpu": 10,
+      "memory": 2048,
+      "environment": [
+      {"name": "LS_HEAP_SIZE", "value": "2048m"},
+      {"name": "XPACK_MONITORING_ENABLED", "value": "false"},
+      {"name": "ELASTICSEARCH_URL", "value": "http://${elasticsearch_node}:9200"},
+      {"name": "ELASTICSEARCH_NODE", "value": "${elasticsearch_node}"}
+      ],
+      "portMappings": [
+          {
+              "containerPort": 5000,
+              "hostPort": 5000
+          }
+      ],
+      "entryPoint": ["/fixlogstashconfig.sh"],
+      "command": ["-f", "/etc/logstash/conf.d/"],
+      "essential": true
+  }
+]

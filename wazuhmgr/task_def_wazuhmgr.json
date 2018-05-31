@@ -1,0 +1,33 @@
+[
+  {
+      "name": "wazuhmgr",
+      "image": "462818068088.dkr.ecr.us-east-1.amazonaws.com/custom_wazuh",
+      "cpu": 10,
+      "memory": 500,
+      "environment": [
+      {"name": "LOGSTASH_NODE", "value": "${logstash_node}"}
+      ],
+      "portMappings": [
+          {
+              "containerPort": 1514,
+              "hostPort": 1514
+          },
+          {
+              "containerPort": 1515,
+              "hostPort": 1515
+          },
+          {
+              "containerPort": 1516,
+              "hostPort": 1516
+          }
+      ],
+      "mountpoints":[
+          {
+            "sourceVolume": "wazuh-slave-config",
+            "containerPath": "/wazuh-config-mount/"
+          }
+      ],
+      "entryPoint": ["/fixwazconfig.sh"],
+      "essential": true
+  }
+]
