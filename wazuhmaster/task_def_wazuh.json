@@ -1,6 +1,6 @@
 [
   {
-      "name": "wazuh",
+      "name": "wazuhmaster",
       "image": "462818068088.dkr.ecr.us-east-1.amazonaws.com/custom_wazuh",
       "cpu": 10,
       "memory": 500,

@@ -14,7 +14,32 @@ variable "app_env" {
 
 variable "cluster" {
   type = "string"
-  default = "ecs_elk-test"
+  default = "ecs_elk-test-elastic"
+}
+
+variable "desired_count" {
+  type = "string"
+  default = "2"
+}
+
+variable "volume_name" {
+  type = "string"
+  default = "elastic-container-vol"
+}
+
+variable "volume_host_path" {
+  type = "string"
+  default = "/data"
+}
+
+variable "container_name" {
+  type = "string"
+  default = "elasticsearch"
+}
+
+variable "container_port" {
+  type = "string"
+  default = "9200"
 }
 
 #variable "internal_nlb_name" {

@@ -12,19 +12,38 @@ variable "app_env" {
   default = "test"
 }
 
-variable "app_svc" {
-  type = "string"
-  default = "wazmaster"
-}
-
 variable "cluster" {
   type = "string"
   default = "ecs_elk-test"
 }
 
-variable "external_elb_name" {
+variable "elb_name" {
   type = "string"
   default = "elk-test-external-elb"
+}
+variable "desired_count" {
+  type = "string"
+  default = "1"
+}
+
+variable "volume_name" {
+  type = "string"
+  default = "wazuh-master-config"
+}
+
+variable "volume_host_path" {
+  type = "string"
+  default = "/wazuh/master"
+}
+
+variable "container_name" {
+  type = "string"
+  default = "wazuhmaster"
+}
+
+variable "container_port" {
+  type = "string"
+  default = "55000"
 }
 
 #######################################

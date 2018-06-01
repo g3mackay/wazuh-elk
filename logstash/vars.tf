@@ -14,9 +14,23 @@ variable "app_env" {
 
 variable "cluster" {
   type = "string"
-  default = "ecs_elk-test"
+  default = "ecs_elk-test-logstash"
 }
 
+variable "desired_count" {
+  type = "string"
+  default = "2"
+}
+
+variable "container_name" {
+  type = "string"
+  default = "logstash"
+}
+
+variable "container_port" {
+  type = "string"
+  default = "5000"
+}
 #variable "internal_nlb_name" {
 #  type = "string"
 #  default = "elk-test-internal-nlb"

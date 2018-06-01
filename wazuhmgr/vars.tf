@@ -12,21 +12,39 @@ variable "app_env" {
   default = "test"
 }
 
-variable "app_svc" {
-  type = "string"
-  default = "wazuhmgr"
-}
-
 variable "cluster" {
   type = "string"
-  default = "ecs_elk-test"
+  default = "ecs_elk-test-logstash"
 }
 
 variable "external_elb_name" {
   type = "string"
   default = "elk-test-external-elb"
 }
+variable "desired_count" {
+  type = "string"
+  default = "2"
+}
 
+variable "volume_name" {
+  type = "string"
+  default = "wazuh-slave-config"
+}
+
+variable "volume_host_path" {
+  type = "string"
+  default = "/wazuh/slave"
+}
+
+variable "container_name" {
+  type = "string"
+  default = "wazuhmgr"
+}
+
+variable "container_port" {
+  type = "string"
+  default = "1514"
+}
 #######################################
 variable "vpc_remote_state_bucket" {
   default = "elk-test-running-state"

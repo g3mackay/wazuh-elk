@@ -25,12 +25,17 @@ data "terraform_remote_state" "cluster" {
 }
 
 module "elastic" {
-  source                    = "../modules/services/elastic"
+  source                    = "../modules/services/with-elb-and-volume"
   app_name                  = "${var.app_name}"
   app_env                   = "${var.app_env}"
   cluster                   = "${data.terraform_remote_state.cluster.es_cluster}"
-  internal_elb_name         = "${data.terraform_remote_state.newvpc.elasticsearch_elb_name}"
-#  target_group_arn          = "${data.terraform_remote_state.loadbalancers.target_group_arn}"
+  elb_name                  = "${data.terraform_remote_state.newvpc.elasticsearch_elb_name}"
+  container_def_json        = "${file("${path.module}/elasticsearch.json")}"
+  desired_count             = "${var.desired_count}"
+  volume_name               = "${var.volume_name}"
+  volume_host_path          = "${var.volume_host_path}"
+  container_name            = "${var.container_name}"
+  container_port            = "${var.container_port}"
 }
 
 terraform {

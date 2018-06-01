@@ -24,7 +24,7 @@ resource "aws_ecs_service" "app_svc" {
   load_balancer {
     elb_name            = "${var.external_elb_name}"
 #    target_group_arn    = "${var.target_group_arn}"
-    container_name      = "wazuh"
+    container_name      = "wazuhmaster"
     container_port      = 55000
     }
 }

@@ -32,14 +32,18 @@ data "template_file" "task_def" {
 }
 
 module "wazuhmgr" {
-  source                    = "../modules/services/wazuhmgr"
+  source                    = "../modules/services/with-elb-and-volume"
   app_name                  = "${var.app_name}"
   app_env                   = "${var.app_env}"
-  app_svc                   = "${var.app_svc}"
   cluster                   = "${data.terraform_remote_state.cluster.lk_cluster}"
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.wazuh_mgr_target_group_arn}"
-  external_elb_name         = "${data.terraform_remote_state.newvpc.external_elb_name}"
+  elb_name         = "${data.terraform_remote_state.newvpc.external_elb_name}"
   container_def_json        = "${data.template_file.task_def.rendered}"
+  desired_count             = "${var.desired_count}"
+  volume_name               = "${var.volume_name}"
+  volume_host_path          = "${var.volume_host_path}"
+  container_name            = "${var.container_name}"
+  container_port            = "${var.container_port}"
 }
 
 terraform {
