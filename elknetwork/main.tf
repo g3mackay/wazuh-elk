@@ -1,4 +1,4 @@
-# jaarsv2/network/main.tf
+# jaarsv2/elknetwork/main.tf
 
 provider "aws" {
     region = "${var.AWS_REGION}"
@@ -10,6 +10,22 @@ module "vpc" {
   app_name  = "${var.app_name}"
   app_env   = "${var.app_env}"
   aws_zones = "${var.aws_zones}"
+}
+
+module "ecscluster_es" {
+  source                             = "github.com/silinternational/terraform-modules//aws/ecs/cluster"
+  app_name                           = "${var.es_cluster_name}-${var.app_name}"
+  app_env                            = "${var.app_env}"
+  ecsInstanceRoleAssumeRolePolicy    = "${var.ecsInstanceRoleAssumeRolePolicy}"
+  ecsInstancerolePolicy              = "${var.ecsInstancerolePolicy}"
+}
+
+module "ecscluster_lk" {
+  source                             = "github.com/silinternational/terraform-modules//aws/ecs/cluster"
+  app_name                           = "${var.lk_cluster_name}-${var.app_name}"
+  app_env                            = "${var.app_env}"
+  ecsInstanceRoleAssumeRolePolicy    = "${var.ecsInstanceRoleAssumeRolePolicy}"
+  ecsInstancerolePolicy              = "${var.ecsInstancerolePolicy}"
 }
 
 module "external_elb" {

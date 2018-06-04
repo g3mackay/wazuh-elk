@@ -56,3 +56,31 @@ output "ext_elb_sg_id" {
 output "public_inbound_sg_id" {
   value = "${aws_security_group.public-allow-inbound.id}"
 }
+
+output "ecs_es_instance_profile_id" {
+  value = "${module.ecscluster_es.ecs_instance_profile_id}"
+}
+
+output "ecs_lk_instance_profile_id" {
+  value = "${module.ecscluster_lk.ecs_instance_profile_id}"
+}
+
+output "es_cluster_name" {
+  value = "${module.ecscluster_es.ecs_cluster_name}"
+}
+
+output "lk_cluster_name" {
+  value = "${module.ecscluster_lk.ecs_cluster_name}"
+}
+
+output "es_cluster_id" {
+  value = "${module.ecscluster_es.ecs_cluster_id}"
+}
+
+output "lk_cluster_id" {
+  value = "${module.ecscluster_lk.ecs_cluster_id}"
+}
+
+output "ami_id" {
+  value = "${module.ecscluster_es.ami_id}"
+}

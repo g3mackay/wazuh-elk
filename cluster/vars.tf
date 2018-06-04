@@ -16,13 +16,13 @@ variable "instance_type" {
   default = "t2.medium"
 }
 
-variable "es_cluster_name" {
-  default = "elastic"
-}
+#variable "es_cluster_name" {
+#  default = "elastic"
+#}
 
-variable "lk_cluster_name" {
-  default = "logstash"
-}
+#variable "lk_cluster_name" {
+#  default = "logstash"
+#}
 
 variable "sg_groups" {
   type = "list"

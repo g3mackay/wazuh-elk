@@ -14,15 +14,15 @@ data "terraform_remote_state" "newvpc" {
   }
 }
 
-data "terraform_remote_state" "cluster" {
-  backend = "s3"
-
-  config {
-    bucket = "${var.cluster_remote_state_bucket}"
-    key    = "${var.cluster_remote_state_key}"
-    region = "${var.AWS_REGION}"
-  }
-}
+#data "terraform_remote_state" "cluster" {
+#  backend = "s3"
+#
+#  config {
+#    bucket = "${var.cluster_remote_state_bucket}"
+#    key    = "${var.cluster_remote_state_key}"
+#    region = "${var.AWS_REGION}"
+#  }
+#}
 
 data "template_file" "task_def" {
   template = "${file("${path.module}/task_def.json")}"
@@ -37,7 +37,8 @@ module "kibana" {
   source                    = "../modules/services/with-elb-no-volume"
   app_name                  = "${var.app_name}"
   app_env                   = "${var.app_env}"
-  cluster                   = "${data.terraform_remote_state.cluster.lk_cluster}"
+#  cluster                   = "${data.terraform_remote_state.cluster.lk_cluster}"
+  cluster                   = "${data.terraform_remote_state.newvpc.lk_cluster_id}"
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.kibana_external_target_group_arn}"
   elb_name                  = "${data.terraform_remote_state.newvpc.external_elb_name}"
   container_def_json        = "${data.template_file.task_def.rendered}"

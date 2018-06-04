@@ -54,3 +54,7 @@ variable "instance_count" {
 variable "vol_count" {
   type = "string"
 }
+
+variable "iam_instance_profile" {
+  type = "string"
+}

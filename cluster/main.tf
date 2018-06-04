@@ -36,16 +36,16 @@ module "cluster_es" {
   instance_type             = "${var.instance_type}"
   app_name                  = "${data.terraform_remote_state.newvpc.app_name}"
   app_env                   = "${data.terraform_remote_state.newvpc.app_env}"
-  cluster_name              = "${var.es_cluster_name}"
+  cluster_name              = "${data.terraform_remote_state.newvpc.es_cluster_name}"
+#  ami_id                    = "${data.terraform_remote_state.newvpc.ami_id}"
   vpc_id                    = "${data.terraform_remote_state.newvpc.vpc_id}"
   sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}"]
   aws_zones                 = "${data.terraform_remote_state.newvpc.aws_zones}"
   private_subnet_ids        = "${data.terraform_remote_state.newvpc.private_subnet_ids}"
   key_name                  = "${var.key_name}"
   user_data_script          = "ecs_user_data_with_mount.sh"
-#  tagkey2                   = "ElasticSearch"
-#  tagvalue2                 = "esnode"
   instance_count            = "${length(data.terraform_remote_state.newvpc.private_subnet_ids)}"
+  iam_instance_profile      = "${data.terraform_remote_state.newvpc.ecs_es_instance_profile_id}"
   vol_count                 = "${length(data.terraform_remote_state.newvpc.private_subnet_ids)}"
   vol_id                    = "${data.terraform_remote_state.newvol.vol_id}"
 
@@ -60,16 +60,16 @@ module "cluster_lk" {
   instance_type             = "${var.instance_type}"
   app_name                  = "${data.terraform_remote_state.newvpc.app_name}"
   app_env                   = "${data.terraform_remote_state.newvpc.app_env}"
-  cluster_name              = "${var.lk_cluster_name}"
+  cluster_name              = "${data.terraform_remote_state.newvpc.lk_cluster_name}"
+#  ami_id                    = "${data.terraform_remote_state.newvpc.ami_id}"
   vpc_id                    = "${data.terraform_remote_state.newvpc.vpc_id}"
   sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}"]
   aws_zones                 = "${data.terraform_remote_state.newvpc.aws_zones}"
   private_subnet_ids        = "${data.terraform_remote_state.newvpc.private_subnet_ids}"
   key_name                  = "${var.key_name}"
   user_data_script          = "ecs_user_data.sh"
-#  tagkey2                   = "Logstash"
-#  tagvalue2                 = "lsnode"
   instance_count            = 2
+  iam_instance_profile      = "${data.terraform_remote_state.newvpc.ecs_lk_instance_profile_id}"
   vol_count                 = 0
   vol_id                    = []
 

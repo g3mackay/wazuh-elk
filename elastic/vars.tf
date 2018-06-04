@@ -12,10 +12,10 @@ variable "app_env" {
   default = "test"
 }
 
-variable "cluster" {
-  type = "string"
-  default = "ecs_elk-test-elastic"
-}
+#variable "cluster" {
+#  type = "string"
+#  default = "ecs_elk-test-elastic"
+#}
 
 variable "desired_count" {
   type = "string"

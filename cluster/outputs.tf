@@ -2,13 +2,13 @@ output "bastion_ip" {
     value = "${module.bastion_host.ip}"
 }
 
-output "es_cluster" {
-    value = "${module.cluster_es.ecs_cluster}"
-}
+#output "es_cluster" {
+#    value = "${module.cluster_es.ecs_cluster}"
+#}
 
-output "lk_cluster" {
-    value = "${module.cluster_lk.ecs_cluster}"
-}
+#output "lk_cluster" {
+#    value = "${module.cluster_lk.ecs_cluster}"
+#}
 
 output "elasticsearch_ecs_host_ips" {
   value = "${module.cluster_es.internal_ips}"
