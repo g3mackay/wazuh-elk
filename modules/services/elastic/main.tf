@@ -1,4 +1,4 @@
-#jaarsv2/modules/services/elastic/main.tf
+#/modules/services/elastic/main.tf
 
 data "aws_ecs_task_definition" "app_task" {
   task_definition       = "${aws_ecs_task_definition.app_task.family}"

@@ -1,4 +1,4 @@
-# jaarsv2/modules/compute/bastion_host/main.tf
+# /modules/compute/bastion_host/main.tf
 
 data "aws_ami" "ecs_ami" {
   most_recent = true

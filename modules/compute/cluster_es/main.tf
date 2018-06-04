@@ -1,4 +1,4 @@
-# jaarsv2/modules/compute/cluster_es/main.tf
+# /modules/compute/cluster_es/main.tf
 
 #data "aws_ami" "ecs_ami" {
 #  most_recent = true

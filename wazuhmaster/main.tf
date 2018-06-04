@@ -1,4 +1,4 @@
-# jaarsv2/wazuhmaster/main.tf
+# /wazuhmaster/main.tf
 
 provider "aws" {
     region = "${var.AWS_REGION}"

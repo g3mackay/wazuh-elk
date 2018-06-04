@@ -1,4 +1,4 @@
-# jaarsv2/modules/network/elb/main.tf
+# /modules/network/elb/main.tf
 
 resource "aws_elb" "elb" {
   name                = "${var.app_name}-${var.app_env}-${var.elb_name}"

@@ -1,4 +1,4 @@
-# jaarsv2/kibana/main.tf
+# /kibana/main.tf
 
 provider "aws" {
     region = "${var.AWS_REGION}"

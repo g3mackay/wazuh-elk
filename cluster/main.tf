@@ -1,4 +1,4 @@
-# jaarsv2/cluster/main.tf
+# /cluster/main.tf
 
 provider "aws" {
     region = "${var.AWS_REGION}"

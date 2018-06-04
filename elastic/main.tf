@@ -1,4 +1,4 @@
-# jaarsv2/elastic/main.tf
+# /elastic/main.tf
 
 provider "aws" {
     region = "${var.AWS_REGION}"

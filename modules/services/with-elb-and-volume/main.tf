@@ -1,4 +1,4 @@
-#jaarsv2/modules/services/with-elb-and-volume/main.tf
+#/modules/services/with-elb-and-volume/main.tf
 
 data "aws_ecs_task_definition" "app_task" {
   task_definition       = "${aws_ecs_task_definition.app_task.family}"

@@ -1,4 +1,4 @@
-#jaarsv2/logstash/main.tf
+#/logstash/main.tf
 
 provider "aws" {
     region = "${var.AWS_REGION}"
