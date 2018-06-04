@@ -6,14 +6,6 @@ variable "app_env" {
   type = "string"
 }
 
-#variable "vpc_id" {
-#  type = "string"
-#}
-
-#variable "aws_zones" {
-#  type = "list"
-#}
-
 variable "elb_name" {
   type = "string"
 }
@@ -21,10 +13,6 @@ variable "elb_name" {
 variable "subnets" {
   type = "list"
 }
-
-#variable "vpc_default_sg_id" {
-#  type = "string"
-#}
 
 variable "internal" {
   type = "string"

@@ -18,7 +18,6 @@ resource "aws_instance" "bastion_host" {
   subnet_id                   = "${var.subnet}"
   security_groups             = ["${var.sg_groups}"]
   associate_public_ip_address = true
-#  key_name                    = "elk-test"
   key_name                    = "${var.key_name}"
 
   tags {

@@ -14,7 +14,7 @@
             "hostPort": 5601
         }
     ],
-    "entryPoint": ["/fixconfig.sh","/wait-for-it.sh", "${elasticsearch_node}"],
+    "entryPoint": ["/fixconfig.sh","/entrypoint.sh", "${elasticsearch_node}"],
     "essential": true
   }
 ]
