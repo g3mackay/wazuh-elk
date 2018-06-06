@@ -177,14 +177,6 @@ resource "aws_security_group" "public-allow-inbound" {
       cidr_blocks   = ["76.177.144.62/32"]
   }
 
-  #ingress {
-  #    from_port   = 9200
-  #    to_port     = 9200
-  #    protocol    = "tcp"
-  #    # add your ip here
-  #    cidr_blocks = ["10.0.11.0/24","10.0.22.0/24"]
-  #}
-
   tags {
     Name = "${var.app_name}-${var.app_env}-public-inbound"
   }
