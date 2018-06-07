@@ -35,6 +35,7 @@ variable "container_port" {
   type = "string"
   default = "5601"
 }
+
 #######################################
 variable "vpc_remote_state_bucket" {
   default = "elk-test-running-state"

@@ -6,7 +6,9 @@
     "memory": 1024,
     "environment": [
     {"name": "NODE_OPTIONS", "value": "--max-old-space-size=3072"},
-    {"name": "ELASTICSEARCH_URL", "value": "http://${elasticsearch_node}:9200"}
+    {"name": "ELASTICSEARCH_URL", "value": "http://${elasticsearch_node}:9200"},
+    {"name": "CLUSTER_IP1", "value": "${cluster_ip1}"},
+    {"name": "CLUSTER_IP2", "value": "${cluster_ip2}"}
     ],
     "portMappings": [
         {
