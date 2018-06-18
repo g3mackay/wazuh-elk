@@ -19,7 +19,7 @@ variable "app_env" {
 
 variable "desired_count" {
   type = "string"
-  default = "2"
+  default = "3"
 }
 
 variable "volume_name" {

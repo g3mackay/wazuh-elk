@@ -23,7 +23,7 @@ variable "external_elb_name" {
 }
 variable "desired_count" {
   type = "string"
-  default = "2"
+  default = "1"
 }
 
 variable "volume_name" {

@@ -14,7 +14,7 @@ variable "app_env" {
 
 variable "aws_zones" {
   type = "list"
-  default = ["us-east-1b","us-east-1d"]
+  default = ["us-east-1a","us-east-1b","us-east-1d"]
 }
 
 variable "sg_groups" {

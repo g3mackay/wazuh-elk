@@ -27,24 +27,38 @@ data "terraform_remote_state" "cluster" {
 data "template_file" "task_def" {
   template = "${file("${path.module}/task_def_wazuhmgr.json")}"
   vars {
-  logstash_node  = "${data.terraform_remote_state.newvpc.logstash_elb_dns_name}"
+  logstash_node       = "${data.terraform_remote_state.newvpc.logstash_elb_dns_name}"
   cluster_ip1         = "${element("${data.terraform_remote_state.cluster.logstash_ecs_host_ips}", 0)}"
   cluster_ip2         = "${element("${data.terraform_remote_state.cluster.logstash_ecs_host_ips}", 1)}"
   }
 }
 
-module "wazuhmgr" {
+module "wazuhmgr1" {
   source                    = "../modules/services/with-elb-and-volume"
   app_name                  = "${var.app_name}"
   app_env                   = "${var.app_env}"
-#  cluster                   = "${data.terraform_remote_state.cluster.lk_cluster}"
   cluster                   = "${data.terraform_remote_state.newvpc.lk_cluster_id}"
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.wazuh_mgr_target_group_arn}"
-  elb_name         = "${data.terraform_remote_state.newvpc.external_elb_name}"
+  elb_name                  = "${data.terraform_remote_state.newvpc.external_elb_name}"
   container_def_json        = "${data.template_file.task_def.rendered}"
   desired_count             = "${var.desired_count}"
   volume_name               = "${var.volume_name}"
-  volume_host_path          = "${var.volume_host_path}"
+  volume_host_path          = "${var.volume_host_path}1"
+  container_name            = "${var.container_name}"
+  container_port            = "${var.container_port}"
+}
+
+module "wazuhmgr2" {
+  source                    = "../modules/services/with-elb-and-volume"
+  app_name                  = "${var.app_name}"
+  app_env                   = "${var.app_env}2"
+  cluster                   = "${data.terraform_remote_state.newvpc.lk_cluster_id}"
+#  target_group_arn          = "${data.terraform_remote_state.loadbalancers.wazuh_mgr_target_group_arn}"
+  elb_name                  = "${data.terraform_remote_state.newvpc.external_elb_name}"
+  container_def_json        = "${data.template_file.task_def.rendered}"
+  desired_count             = "${var.desired_count}"
+  volume_name               = "${var.volume_name}"
+  volume_host_path          = "${var.volume_host_path}2"
   container_name            = "${var.container_name}"
   container_port            = "${var.container_port}"
 }

@@ -68,7 +68,8 @@ module "cluster_lk" {
   private_subnet_ids        = "${data.terraform_remote_state.newvpc.private_subnet_ids}"
   key_name                  = "${var.key_name}"
   user_data_script          = "ecs_user_data.sh"
-  instance_count            = 2
+  instance_count            = "${length(data.terraform_remote_state.newvpc.private_subnet_ids)}"
+  #instance_count            = 2
   iam_instance_profile      = "${data.terraform_remote_state.newvpc.ecs_lk_instance_profile_id}"
   vol_count                 = 0
   vol_id                    = []
@@ -78,36 +79,6 @@ module "cluster_lk" {
       "logstash"            = "lsnode"
     }
 }
-
-#module "cluster_es" {
-#  source                    = "../modules/compute/cluster_es"
-#  instance_type             = "${var.instance_type}"
-#  app_name                  = "${data.terraform_remote_state.newvpc.app_name}"
-#  app_env                   = "${data.terraform_remote_state.newvpc.app_env}"
-#  cluster_name              = "${var.es_cluster_name}"
-#  vpc_id                    = "${data.terraform_remote_state.newvpc.vpc_id}"
-#  sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}"]
-#  aws_zones                 = "${data.terraform_remote_state.newvpc.aws_zones}"
-#  private_subnet_ids        = "${data.terraform_remote_state.newvpc.private_subnet_ids}"
-#  key_name                  = "${var.key_name}"
-#  vol_id                    = "${data.terraform_remote_state.newvol.vol_id}"
-#}
-
-#module "cluster_lk" {
-#  source                    = "../modules/compute/cluster_lk"
-#  instance_type             = "${var.instance_type}"
-#  app_name                  = "${data.terraform_remote_state.newvpc.app_name}"
-#  app_env                   = "${data.terraform_remote_state.newvpc.app_env}"
-#  cluster_name              = "${var.lk_cluster_name}"
-#  vpc_id                    = "${data.terraform_remote_state.newvpc.vpc_id}"
-#  sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}"]
-#  aws_zones                 = "${data.terraform_remote_state.newvpc.aws_zones}"
-#  private_subnet_ids        = "${data.terraform_remote_state.newvpc.private_subnet_ids}"
-#  key_name                  = "${var.key_name}"
-#}
-
-
-
 
 terraform {
   backend "s3" {

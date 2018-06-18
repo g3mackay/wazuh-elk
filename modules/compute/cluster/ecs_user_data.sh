@@ -10,7 +10,8 @@ mkdir -p /wazuh/master/etc
 mkdir -p /wazuh/slave/etc
 
 aws s3 cp s3://elk-test-running-state/dev/elktest/config/master/ossec.conf /wazuh/master/etc
-aws s3 cp s3://elk-test-running-state/dev/elktest/config/slave/ossec.conf /wazuh/slave/etc
+aws s3 cp s3://elk-test-running-state/dev/elktest/config/slave1/ossec.conf /wazuh/slave1/etc
+aws s3 cp s3://elk-test-running-state/dev/elktest/config/slave2/ossec.conf /wazuh/slave2/etc
 
 #IPS=$(aws ec2 describe-instances --region us-east-1 --filter "Name=instance-state-name,Values=running" "Name=tag:Name,Values=logstash-docker_ecs_host" --query 'Reservations[*].Instances[*].[PrivateIpAddress]' --output text)
 
