@@ -7,7 +7,7 @@
     "environment": [
     {"name": "network.host", "value": "0.0.0.0"},
     {"name": "cluster.name", "value": "wazuh-test"},
-    {"name": "bootstrap.memory_lock", "value": "false"},
+    {"name": "bootstrap.memory_lock", "value": "true"},
     {"name": "xpack.security.enabled", "value": "false"},
     {"name": "xpack.monitoring.enabled", "value": "false"},
     {"name": "xpack.ml.enabled", "value": "false"},
