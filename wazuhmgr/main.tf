@@ -24,18 +24,26 @@ data "terraform_remote_state" "cluster" {
   }
 }
 
+data "null_data_source" "logstash_cluster_ips" {
+  inputs = {
+    cluster_ips       = "${join(" ", data.terraform_remote_state.cluster.logstash_ecs_host_ips)}"
+  }
+}
+
 data "template_file" "task_def" {
   template = "${file("${path.module}/task_def_wazuhmgr.json")}"
   vars {
   logstash_node       = "${data.terraform_remote_state.newvpc.logstash_elb_dns_name}"
-  cluster_ip1         = "${element("${data.terraform_remote_state.cluster.logstash_ecs_host_ips}", 0)}"
-  cluster_ip2         = "${element("${data.terraform_remote_state.cluster.logstash_ecs_host_ips}", 1)}"
+#  cluster_ip1         = "${element("${data.terraform_remote_state.cluster.logstash_ecs_host_ips}", 0)}"
+#  cluster_ip2         = "${element("${data.terraform_remote_state.cluster.logstash_ecs_host_ips}", 1)}"
+#  cluster_ip3         = "${element("${data.terraform_remote_state.cluster.logstash_ecs_host_ips}", 2)}"
+  cluster_ips         = "${data.null_data_source.logstash_cluster_ips.outputs.cluster_ips}"
   }
 }
 
 module "wazuhmgr1" {
   source                    = "../modules/services/with-elb-and-volume"
-  app_name                  = "${var.app_name}"
+  app_name                  = "${var.app_name}1"
   app_env                   = "${var.app_env}"
   cluster                   = "${data.terraform_remote_state.newvpc.lk_cluster_id}"
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.wazuh_mgr_target_group_arn}"
@@ -50,8 +58,8 @@ module "wazuhmgr1" {
 
 module "wazuhmgr2" {
   source                    = "../modules/services/with-elb-and-volume"
-  app_name                  = "${var.app_name}"
-  app_env                   = "${var.app_env}2"
+  app_name                  = "${var.app_name}2"
+  app_env                   = "${var.app_env}"
   cluster                   = "${data.terraform_remote_state.newvpc.lk_cluster_id}"
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.wazuh_mgr_target_group_arn}"
   elb_name                  = "${data.terraform_remote_state.newvpc.external_elb_name}"
