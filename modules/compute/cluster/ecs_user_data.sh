@@ -7,7 +7,9 @@ echo "vm.max_map_count=262144" >> /etc/sysctl.conf
 yum install -y aws-cli
 
 mkdir -p /wazuh/master/etc
-mkdir -p /wazuh/slave/etc
+#mkdir -p /wazuh/slave/etc
+mkdir -p /wazuh/slave1/etc
+mkdir -p /wazuh/slave2/etc
 
 aws s3 cp s3://elk-test-running-state/dev/elktest/config/master/ossec.conf /wazuh/master/etc
 aws s3 cp s3://elk-test-running-state/dev/elktest/config/slave1/ossec.conf /wazuh/slave1/etc
