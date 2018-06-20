@@ -47,7 +47,6 @@ module "kibana" {
   source                    = "../modules/services/with-elb-no-volume"
   app_name                  = "${var.app_name}"
   app_env                   = "${var.app_env}"
-#  cluster                   = "${data.terraform_remote_state.cluster.lk_cluster}"
   cluster                   = "${data.terraform_remote_state.newvpc.lk_cluster_id}"
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.kibana_external_target_group_arn}"
   elb_name                  = "${data.terraform_remote_state.newvpc.external_elb_name}"
