@@ -46,6 +46,11 @@ variable "lk_cluster_name" {
   default = "logstash"
 }
 
+variable "key_name" {
+  type = "string"
+  default = "elk-test"
+}
+
 variable "ecsInstanceRoleAssumeRolePolicy" {
   type = "string"
 
@@ -112,6 +117,48 @@ variable "ecsInstancerolePolicy" {
               "Resource": "*"
           }
       ]
+}
+EOF
+}
+
+
+variable "ecsTaskRoleAssumeRolePolicy" {
+  type = "string"
+
+  default = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ecs-tasks.amazonaws.com" 
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+variable "ecsTaskRolePolicy" {
+  type = "string"
+  default = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::my-task-secrets-bucket/*"
+      ]
+    }
+  ]
 }
 EOF
 }

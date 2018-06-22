@@ -84,3 +84,19 @@ output "lk_cluster_id" {
 output "ami_id" {
   value = "${module.ecscluster_es.ami_id}"
 }
+
+output "ecsServiceRole_arn" {
+  value = "${module.ecscluster_lk.ecsServiceRole_arn}"
+}
+
+output "ecsInstanceRole_arn" {
+  value = "${module.ecscluster_lk.ecsInstanceRole_arn}"
+}
+
+output "nat_instance_ip" {
+  value = "${module.vpc.nat_instance_ip}"
+}
+
+output "ecsTaskRole_arn" {
+  value = "${module.vpc.ecsTaskRole_arn}"
+}

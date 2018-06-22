@@ -24,12 +24,12 @@ data "terraform_remote_state" "newvol" {
   }
 }
 
-module "bastion_host" {
-  source                    = "../modules/compute/bastion_host"
-  subnet                    = "${element(data.terraform_remote_state.newvpc.public_subnet_ids, 0)}"
-  sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}","${data.terraform_remote_state.newvpc.public_inbound_sg_id}"]
-  key_name                   = "${var.key_name}"
-}
+#module "bastion_host" {
+#  source                    = "../modules/compute/bastion_host"
+#  subnet                    = "${element(data.terraform_remote_state.newvpc.public_subnet_ids, 0)}"
+#  sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}","${data.terraform_remote_state.newvpc.public_inbound_sg_id}"]
+#  key_name                   = "${var.key_name}"
+#}
 
 module "cluster_es" {
   source                    = "../modules/compute/cluster"
