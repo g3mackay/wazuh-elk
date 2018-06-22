@@ -41,6 +41,7 @@ module "logstash" {
   elb_name                  = "${data.terraform_remote_state.newvpc.logstash_elb_name}"
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.logstash_target_group_arn}"
   container_def_json        = "${data.template_file.task_def.rendered}"
+  task_role_arn             = "${data.terraform_remote_state.newvpc.ecsTaskRole_arn}"
   desired_count             = "${var.desired_count}"
   container_name            = "${var.container_name}"
   container_port            = "${var.container_port}"

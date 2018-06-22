@@ -5,11 +5,21 @@ provider "aws" {
 }
 
 
+#module "vpc" {
+#  source    = "github.com/silinternational/terraform-modules//aws/vpc?ref=2.0.2"
+#  app_name  = "${var.app_name}"
+#  app_env   = "${var.app_env}"
+#  aws_zones = "${var.aws_zones}"
+#}
+
 module "vpc" {
-  source    = "github.com/silinternational/terraform-modules//aws/vpc?ref=2.0.2"
-  app_name  = "${var.app_name}"
-  app_env   = "${var.app_env}"
-  aws_zones = "${var.aws_zones}"
+  source                            = "../modules/network/vpc-with-nat-instance"
+  app_name                          = "${var.app_name}"
+  app_env                           = "${var.app_env}"
+  aws_zones                         = "${var.aws_zones}"
+  key_name                          = "${var.key_name}"
+  ecsTaskRoleAssumeRolePolicy       = "${var.ecsTaskRoleAssumeRolePolicy}"
+  ecsTaskRolePolicy                 = "${var.ecsTaskRolePolicy}"
 }
 
 module "ecscluster_es" {
