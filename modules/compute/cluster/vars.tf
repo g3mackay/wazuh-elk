@@ -59,9 +59,9 @@ variable "iam_instance_profile" {
   type = "string"
 }
 
-#variable "ami_id" {
-#  type = "string"
-#}
+variable "ami_id" {
+  type = "string"
+}
 
 variable "ip_value" {
   type = "string"

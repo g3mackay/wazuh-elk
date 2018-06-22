@@ -37,7 +37,7 @@ module "cluster_es" {
   app_name                  = "${data.terraform_remote_state.newvpc.app_name}"
   app_env                   = "${data.terraform_remote_state.newvpc.app_env}"
   cluster_name              = "${data.terraform_remote_state.newvpc.es_cluster_name}"
-#  ami_id                    = "${data.terraform_remote_state.newvpc.ami_id}"
+  ami_id                    = "${data.terraform_remote_state.newvpc.ami_id}"
   vpc_id                    = "${data.terraform_remote_state.newvpc.vpc_id}"
   sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}"]
   aws_zones                 = "${data.terraform_remote_state.newvpc.aws_zones}"
@@ -62,7 +62,7 @@ module "cluster_lk" {
   app_name                  = "${data.terraform_remote_state.newvpc.app_name}"
   app_env                   = "${data.terraform_remote_state.newvpc.app_env}"
   cluster_name              = "${data.terraform_remote_state.newvpc.lk_cluster_name}"
-#  ami_id                    = "${data.terraform_remote_state.newvpc.ami_id}"
+  ami_id                    = "${data.terraform_remote_state.newvpc.ami_id}"
   vpc_id                    = "${data.terraform_remote_state.newvpc.vpc_id}"
   sg_groups                 = ["${data.terraform_remote_state.newvpc.vpc_default_sg_id}"]
   aws_zones                 = "${data.terraform_remote_state.newvpc.aws_zones}"

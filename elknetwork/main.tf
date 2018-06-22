@@ -69,7 +69,7 @@ module "external_elb" {
   health_check          = [
    {
       healthy_threshold   = 2
-      unhealthy_threshold = 2
+      unhealthy_threshold = 4
       timeout             = 3
       target              = "HTTP:5601/"
       interval            = 30
