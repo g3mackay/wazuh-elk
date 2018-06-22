@@ -6,8 +6,7 @@
       "memory": 500,
       "environment": [
       {"name": "LOGSTASH_NODE", "value": "${logstash_node}"},
-      {"name": "CLUSTER_IP1", "value": "${cluster_ip1}"},
-      {"name": "CLUSTER_IP2", "value": "${cluster_ip2}"}
+      {"name": "CLUSTER_IPS", "value": "${cluster_ips}"}
       ],
       "portMappings": [
           {

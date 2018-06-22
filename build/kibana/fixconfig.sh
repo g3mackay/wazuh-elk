@@ -4,9 +4,11 @@ sed -i "s;http:\/\/elasticsearch:9200;$ELASTICSEARCH_URL;g" /usr/share/kibana/co
 
 # hack to find what ecs node the wazuh master container is running and update /etc/hosts
 #IPS=$(echo $CLUSTER_IPLIST|sed "s;\,;;g"|sed "s;[][];;g")
-IPS="$CLUSTER_IP1 $CLUSTER_IP2"
+#IPS="$CLUSTER_IP1 $CLUSTER_IP2 $CLUSTER_IP3"
+#IPS=$CLUSTER_IPS
+IPS="10.0.11.101 10.0.22.102 10.0.33.103"
 
-COUNT=3
+COUNT=6
 MASTER=0
 
 findmaster()

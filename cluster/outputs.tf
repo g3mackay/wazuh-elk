@@ -1,6 +1,6 @@
-output "bastion_ip" {
-    value = "${module.bastion_host.ip}"
-}
+#output "bastion_ip" {
+#    value = "${module.bastion_host.ip}"
+#}
 
 #output "es_cluster" {
 #    value = "${module.cluster_es.ecs_cluster}"
