@@ -18,8 +18,8 @@ module "vpc" {
   app_env                           = "${var.app_env}"
   aws_zones                         = "${var.aws_zones}"
   key_name                          = "${var.key_name}"
-  ecsTaskRoleAssumeRolePolicy       = "${var.ecsTaskRoleAssumeRolePolicy}"
-  ecsTaskRolePolicy                 = "${var.ecsTaskRolePolicy}"
+#  ecsTaskRoleAssumeRolePolicy       = "${var.ecsTaskRoleAssumeRolePolicy}"
+#  ecsTaskRolePolicy                 = "${var.ecsTaskRolePolicy}"
   src_ips                           = "${var.src_ips}"
   nat_sg_ids                        = ["${module.vpc.vpc_default_sg_id}","${aws_security_group.allow-ssh.id}"]
 }
@@ -190,6 +190,25 @@ tags {
     Name = "allow-ssh"
   }
 }
+
+/*
+ * Test creating a new task role.  Will move this later.
+ */
+
+ resource "random_id" "code" {
+   byte_length = 4
+ }
+
+resource "aws_iam_role" "ecsTaskRole" {
+   name               = "ecsTaskRole-${random_id.code.hex}"
+   assume_role_policy = "${var.ecsTaskRoleAssumeRolePolicy}"
+ }
+
+ resource "aws_iam_role_policy" "ecsTaskRolePolicy" {
+   name   = "ecsTaskRolePolicy-${random_id.code.hex}"
+   role   = "${aws_iam_role.ecsTaskRole.id}"
+   policy = "${var.ecsTaskRolePolicy}"
+ }
 
 
 terraform {

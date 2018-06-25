@@ -30,13 +30,13 @@ variable "key_name" {
   type = "string"
 }
 
-variable "ecsTaskRoleAssumeRolePolicy" {
-  type = "string"
-}
+#variable "ecsTaskRoleAssumeRolePolicy" {
+#  type = "string"
+#}
 
-variable "ecsTaskRolePolicy" {
-  type = "string"
-}
+#variable "ecsTaskRolePolicy" {
+#  type = "string"
+#}
 
 variable "src_ips" {
   type = "list"

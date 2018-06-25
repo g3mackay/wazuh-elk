@@ -143,21 +143,21 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 }
 
 ###################################################3
-/*
- * Test creating a new task role.  Will move this later.
- */
-
- resource "random_id" "code" {
-   byte_length = 4
- }
-
-resource "aws_iam_role" "ecsTaskRole" {
-   name               = "ecsTaskRole-${random_id.code.hex}"
-   assume_role_policy = "${var.ecsTaskRoleAssumeRolePolicy}"
- }
-
- resource "aws_iam_role_policy" "ecsTaskRolePolicy" {
-   name   = "ecsTaskRolePolicy-${random_id.code.hex}"
-   role   = "${aws_iam_role.ecsTaskRole.id}"
-   policy = "${var.ecsTaskRolePolicy}"
- }
+#/*
+# * Test creating a new task role.  Will move this later.
+# */
+#
+# resource "random_id" "code" {
+#   byte_length = 4
+# }
+#
+#resource "aws_iam_role" "ecsTaskRole" {
+#   name               = "ecsTaskRole-${random_id.code.hex}"
+#   assume_role_policy = "${var.ecsTaskRoleAssumeRolePolicy}"
+# }
+#
+# resource "aws_iam_role_policy" "ecsTaskRolePolicy" {
+#   name   = "ecsTaskRolePolicy-${random_id.code.hex}"
+#   role   = "${aws_iam_role.ecsTaskRole.id}"
+#   policy = "${var.ecsTaskRolePolicy}"
+# }
