@@ -98,6 +98,7 @@ output "nat_instance_ip" {
   value = "${module.vpc.nat_instance_ip}"
 }
 
-#output "ecsTaskRole_arn" {
+output "ecsTaskRole_arn" {
 #  value = "${module.vpc.ecsTaskRole_arn}"
-#}
+  value = "${aws_iam_role.ecsTaskRole.arn}"
+}

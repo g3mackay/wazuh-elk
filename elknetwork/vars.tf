@@ -154,13 +154,15 @@ variable "ecsTaskRolePolicy" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "",
+      "Sid": "ecs",
       "Effect": "Allow",
       "Action": [
-        "s3:GetObject"
+        "ec2:DescribeInstances",
+        "ecs:ListContainerInstances",
+        "ecs:DescribeContainerInstances"
       ],
       "Resource": [
-        "arn:aws:s3:::my-task-secrets-bucket/*"
+        "*"
       ]
     }
   ]

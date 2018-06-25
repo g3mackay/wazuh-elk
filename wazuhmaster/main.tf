@@ -41,6 +41,7 @@ module "wazuhmaster" {
 #  target_group_arn          = "${data.terraform_remote_state.loadbalancers.kibana_external_target_group_arn}"
   elb_name                  = "${data.terraform_remote_state.newvpc.external_elb_name}"
   container_def_json        = "${data.template_file.task_def.rendered}"
+  task_role_arn             = "${data.terraform_remote_state.newvpc.ecsTaskRole_arn}"
   desired_count             = "${var.desired_count}"
   volume_name               = "${var.volume_name}"
   volume_host_path          = "${var.volume_host_path}"

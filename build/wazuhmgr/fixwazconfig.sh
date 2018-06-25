@@ -4,11 +4,12 @@ LOGFILE=/root/test.log
 sed -i "s;logstash:5000;$LOGSTASH_NODE:5000;g" /etc/filebeat/filebeat.yml
 
 # hack to find what ecs node the wazuh master container is running and update /var/ossec/data/etc/ossec.conf
-#IPS="$CLUSTER_IP1 $CLUSTER_IP2 $CLUSTER_IP3"
 #IPS=$CLUSTER_IPS
-IPS="10.0.11.101 10.0.22.102 10.0.33.103"
+#IPS="10.0.11.101 10.0.22.102 10.0.33.103"
+export AWS_REGION="us-east-1"
+IPS=$(/awsops ecs listInstanceIPs -c logstash-elk-test)
 
-COUNT=12
+COUNT=18
 MASTER=0
 
 findmaster()

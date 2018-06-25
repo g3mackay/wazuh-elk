@@ -32,6 +32,7 @@ module "elastic" {
   cluster                   = "${data.terraform_remote_state.newvpc.es_cluster_id}"
   elb_name                  = "${data.terraform_remote_state.newvpc.elasticsearch_elb_name}"
   container_def_json        = "${file("${path.module}/elasticsearch.json")}"
+  task_role_arn             = "${data.terraform_remote_state.newvpc.ecsTaskRole_arn}"
   desired_count             = "${var.desired_count}"
   volume_name               = "${var.volume_name}"
   volume_host_path          = "${var.volume_host_path}"

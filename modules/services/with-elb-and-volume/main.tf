@@ -8,6 +8,7 @@ data "aws_ecs_task_definition" "app_task" {
 resource "aws_ecs_task_definition" "app_task" {
   family                = "${var.app_name}-${var.app_env}"
   container_definitions = "${var.container_def_json}"
+  task_role_arn         = "${var.task_role_arn}"
   volume {
     name                = "${var.volume_name}"
     host_path           = "${var.volume_host_path}"

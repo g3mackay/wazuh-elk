@@ -37,3 +37,7 @@ variable "container_name" {
 variable "container_port" {
   type = "string"
 }
+
+variable "task_role_arn" {
+  type = "string"
+}
