@@ -53,7 +53,7 @@ variable "key_name" {
 
 variable "src_ips" {
   type = "list"
-  default = ["76.177.144.62/32","162.40.29.3/32"]
+  default = ["76.177.144.62/32"]
 }
 
 variable "ecsInstanceRoleAssumeRolePolicy" {
