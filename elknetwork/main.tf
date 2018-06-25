@@ -20,6 +20,8 @@ module "vpc" {
   key_name                          = "${var.key_name}"
   ecsTaskRoleAssumeRolePolicy       = "${var.ecsTaskRoleAssumeRolePolicy}"
   ecsTaskRolePolicy                 = "${var.ecsTaskRolePolicy}"
+  src_ips                           = "${var.src_ips}"
+  nat_sg_ids                        = ["${module.vpc.vpc_default_sg_id}","${aws_security_group.allow-ssh.id}"]
 }
 
 module "ecscluster_es" {
@@ -154,44 +156,40 @@ resource "aws_security_group" "ext-elb-inbound" {
         from_port     = 1514
         to_port       = 1514
         protocol      = "tcp"
-        cidr_blocks   = ["76.177.144.62/32"]
+        cidr_blocks   = ["${var.src_ips}"]
   }
   ingress {
         from_port     = 55000
         to_port       = 55000
         protocol      = "tcp"
-        cidr_blocks   = ["76.177.144.62/32"]
+        cidr_blocks   = ["${var.src_ips}"]
   }
   tags {
     Name              = "${var.app_name}-${var.app_env}-elb-inbound"
   }
 }
 
-# security group for public inbound access
-resource "aws_security_group" "public-allow-inbound" {
-  vpc_id          = "${module.vpc.id}"
-  name            = "${var.app_name}-${var.app_env}-allow-inbound"
-  description     = "security group that allows ssh traffic inbound"
+resource "aws_security_group" "allow-ssh" {
+  vpc_id = "${module.vpc.id}"
+  name = "allow-ssh"
+  description = "security group that allows ssh and all egress traffic"
   egress {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
+      from_port = 0
+      to_port = 0
+      protocol = "-1"
       cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      # add your ip here
-      cidr_blocks   = ["76.177.144.62/32"]
+      from_port = 22
+      to_port = 22
+      protocol = "tcp"
+      cidr_blocks   = ["${var.src_ips}"]
   }
-
-  tags {
-    Name = "${var.app_name}-${var.app_env}-public-inbound"
+tags {
+    Name = "allow-ssh"
   }
 }
-
 
 
 terraform {

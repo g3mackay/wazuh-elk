@@ -37,3 +37,11 @@ variable "ecsTaskRoleAssumeRolePolicy" {
 variable "ecsTaskRolePolicy" {
   type = "string"
 }
+
+variable "src_ips" {
+  type = "list"
+}
+
+variable "nat_sg_ids" {
+  type = "list"
+}

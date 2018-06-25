@@ -51,6 +51,11 @@ variable "key_name" {
   default = "elk-test"
 }
 
+variable "src_ips" {
+  type = "list"
+  default = ["76.177.144.62/32","162.40.29.3/32"]
+}
+
 variable "ecsInstanceRoleAssumeRolePolicy" {
   type = "string"
 
@@ -133,7 +138,7 @@ variable "ecsTaskRoleAssumeRolePolicy" {
       "Sid": "",
       "Effect": "Allow",
       "Principal": {
-        "Service": "ecs-tasks.amazonaws.com" 
+        "Service": "ecs-tasks.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
     }

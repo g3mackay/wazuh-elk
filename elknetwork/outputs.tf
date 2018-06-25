@@ -53,9 +53,10 @@ output "ext_elb_sg_id" {
   value = "${aws_security_group.ext-elb-inbound.id}"
 }
 
-output "public_inbound_sg_id" {
-  value = "${aws_security_group.public-allow-inbound.id}"
-}
+#output "public_inbound_sg_id" {
+#  value = "${aws_security_group.public-allow-inbound.id}"
+#}
+
 
 output "ecs_es_instance_profile_id" {
   value = "${module.ecscluster_es.ecs_instance_profile_id}"

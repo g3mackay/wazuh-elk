@@ -79,34 +79,12 @@ resource "aws_instance" "nat_instance" {
   instance_type               = "t2.micro"
   subnet_id                   = "${aws_subnet.public_subnet.0.id}"
   associate_public_ip_address = true
-  vpc_security_group_ids      = ["${data.aws_security_group.vpc_default_sg.id}","${aws_security_group.allow-ssh.id}"]
+  vpc_security_group_ids      = ["${var.nat_sg_ids}"]
   key_name                    = "${var.key_name}"
   source_dest_check           = false
 
   tags {
     "Name" = "nat-instance-host"
-  }
-}
-
-resource "aws_security_group" "allow-ssh" {
-  vpc_id = "${aws_vpc.vpc.id}"
-  name = "allow-ssh"
-  description = "security group that allows ssh and all egress traffic"
-  egress {
-      from_port = 0
-      to_port = 0
-      protocol = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-      from_port = 22
-      to_port = 22
-      protocol = "tcp"
-      cidr_blocks = ["76.177.144.62/32"]
-  }
-tags {
-    Name = "allow-ssh"
   }
 }
 
